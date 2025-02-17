@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Works - Noli Me Tangere</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -72,11 +73,22 @@
     </footer>
 
     <script>
+        // First load the navbar
         fetch('components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.querySelector('header').insertAdjacentHTML('afterend', data);
+                
+                // After navbar is loaded, set active page
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
             });
-    </script>
+    </script> 
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Jose Rizal</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -83,11 +84,68 @@
     </footer>
 
     <script>
+        // First load the navbar
         fetch('components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.querySelector('header').insertAdjacentHTML('afterend', data);
+                
+                // After navbar is loaded, set active page
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
             });
-    </script>
+
+        document.querySelectorAll('.image-container img').forEach(img => {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 50;
+            let yOffset = 50;
+
+            img.addEventListener('mousedown', startDragging);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDragging);
+
+            function startDragging(e) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                if (e.target === img) {
+                    isDragging = true;
+                    img.classList.add('dragging');
+                }
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+
+                    // Limit the range of movement (0-100%)
+                    xOffset = Math.min(Math.max(currentX, 0), 100);
+                    yOffset = Math.min(Math.max(currentY, 0), 100);
+
+                    img.style.setProperty('--img-x', `${xOffset}%`);
+                    img.style.setProperty('--img-y', `${yOffset}%`);
+                }
+            }
+
+            function stopDragging() {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+                img.classList.remove('dragging');
+            }
+        });
+    </script> 
 </body>
 </html>
