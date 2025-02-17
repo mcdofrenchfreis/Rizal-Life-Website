@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Jose Rizal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Gallery</h1>
+    </header>
+
+    <main>
+        <section id="el-fili-gallery">
+            <h2>El Filibusterismo Through Time</h2>
+            <p class="section-description">Various editions and manuscripts of El Filibusterismo throughout history.</p>
+            
+            <div class="gallery-masonry">
+                <div class="gallery-item">
+                    <div class="image-container">
+                        <img src="images/manuscript1.jpg" alt="Original manuscript of El Filibusterismo">
+                    </div>
+                    <p class="caption">Original manuscript with Rizal's handwriting</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-container">
+                        <img src="images/book-cover1.jpg" alt="English translation cover">
+                    </div>
+                    <p class="caption">English translation by Dr. Jorge Bocobo</p>
+                </div>
+                <div class="gallery-item wide">
+                    <div class="image-container">
+                        <img src="images/manuscript2.jpg" alt="El Filibusterismo manuscript page">
+                    </div>
+                    <p class="caption">Detailed view of the manuscript's title page</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-container">
+                        <img src="images/book-cover2.jpg" alt="Modern illustrated cover">
+                    </div>
+                    <p class="caption">Modern Illustrated Edition</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-container">
+                        <img src="images/book-cover3.jpg" alt="Filipino translation cover">
+                    </div>
+                    <p class="caption">Filipino translation (Ang "Filibusterismo")</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
+    </footer>
+
+    <script>
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('header').insertAdjacentHTML('afterend', data);
+                
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+    </script>
+</body>
+</html> 

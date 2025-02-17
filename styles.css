@@ -209,4 +209,35 @@ a:hover {
   section h2 {
     font-size: 1.5rem;
   }
+}
+
+/* Gallery Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.gallery-item .image-container {
+    height: 400px;
+}
+
+.caption {
+    text-align: center;
+    color: var(--secondary-color);
+    font-style: italic;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .gallery-item .image-container {
+        height: 300px;
+    }
 } 
