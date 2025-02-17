@@ -5,135 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Jose Rizal</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #46251e; /* Dark brown */
-            background: #e7e3d8; /* Soft cream */
-        }
-
-        header {
-            background-color: #46251e; /* Dark brown */
-            color: #e7e3d8; /* Light neutral */
-            padding: 1rem 0;
-            text-align: center;
-        }
-
-        /* Navbar Container */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #46251e, #46251e);
-            padding: 1rem;
-            border-radius: 15px;
-            margin: 20px auto;
-            max-width: 90%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Navbar Links */
-        .nav-link {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            margin: 0 15px;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #f1f1f1;
-            transform: translateY(-3px);
-        }
-
-        /* Main Content */
-        main {
-            padding: 2rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: #e7e3d8; /* Light cream */
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            color: #46251e;
-        }
-
-        h2 {
-            color: #673627; /* Lighter brown */
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin: 0.5rem 0;
-        }
-
-        /* Image Styling */
-        .image-container {
-            text-align: center;
-            margin: 1rem 0;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #7f5441; /* Soft brown border */
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #46251e; /* Dark brown */
-            color: #e7e3d8; /* Light neutral */
-            margin-top: 2rem;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .navbar {
-                flex-wrap: wrap;
-                padding: 1rem 0.5rem;
-            }
-
-            .nav-link {
-                margin: 5px;
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <h1>About Jose Rizal</h1>
     </header>
-
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="works.html" class="nav-link">Works</a>
-        <a href="analysis.html" class="nav-link">Analysis</a>
-        <a href="about.html" class="nav-link">About Rizal</a>
-    </nav>
 
     <main>
         <section id="early-life">
@@ -205,5 +81,13 @@
     <footer>
         <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
     </footer>
+
+    <script>
+        fetch('components/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('header').insertAdjacentHTML('afterend', data);
+            });
+    </script>
 </body>
 </html>
