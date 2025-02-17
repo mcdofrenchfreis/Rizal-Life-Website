@@ -20,31 +20,31 @@
             <div class="gallery-masonry">
                 <div class="gallery-item">
                     <div class="image-container">
-                        <img src="images/manuscript1.jpg" alt="Original manuscript of El Filibusterismo">
+                        <img src="images/manuscript1.jpg" alt="Original manuscript of El Filibusterismo" onclick="openModal(this)">
                     </div>
                     <p class="caption">Original manuscript with Rizal's handwriting</p>
                 </div>
                 <div class="gallery-item">
                     <div class="image-container">
-                        <img src="images/book-cover1.jpg" alt="English translation cover">
+                        <img src="images/book-cover1.jpg" alt="English translation cover" onclick="openModal(this)">
                     </div>
                     <p class="caption">English translation by Dr. Jorge Bocobo</p>
                 </div>
                 <div class="gallery-item wide">
                     <div class="image-container">
-                        <img src="images/manuscript2.jpg" alt="El Filibusterismo manuscript page">
+                        <img src="images/manuscript2.jpg" alt="El Filibusterismo manuscript page" onclick="openModal(this)">
                     </div>
                     <p class="caption">Detailed view of the manuscript's title page</p>
                 </div>
                 <div class="gallery-item">
                     <div class="image-container">
-                        <img src="images/book-cover2.jpg" alt="Modern illustrated cover">
+                        <img src="images/book-cover2.jpg" alt="Modern illustrated cover" onclick="openModal(this)">
                     </div>
                     <p class="caption">Modern Illustrated Edition</p>
                 </div>
                 <div class="gallery-item">
                     <div class="image-container">
-                        <img src="images/book-cover3.jpg" alt="Filipino translation cover">
+                        <img src="images/book-cover3.jpg" alt="Filipino translation cover" onclick="openModal(this)">
                     </div>
                     <p class="caption">Filipino translation (Ang "Filibusterismo")</p>
                 </div>
@@ -52,19 +52,58 @@
         </section>
     </main>
 
+    <!-- Add Modal HTML -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
+
     <footer>
         <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
     </footer>
 
+    <!-- Add Modal JavaScript -->
     <script>
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.close-modal');
+
+        function openModal(img) {
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            modalCaption.innerHTML = img.alt;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        closeBtn.onclick = closeModal;
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+
+        // Existing navbar loading script
         fetch('components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.querySelector('header').insertAdjacentHTML('afterend', data);
-                
                 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
                 const navLinks = document.querySelectorAll('.nav-link');
-                
                 navLinks.forEach(link => {
                     if (link.getAttribute('href') === currentPage) {
                         link.classList.add('active');

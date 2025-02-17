@@ -16,7 +16,7 @@
         <section id="early-life">
             <h2>Early Life</h2>
             <div class="image-container">
-                <img src="images/early-life.jpg" alt="Jose Rizal's Early Life">
+                <img src="images/early-life.jpg" alt="Jose Rizal's Early Life" onclick="openModal(this)">
             </div>
             <p>
                 Jose Protacio Rizal Mercado y Alonzo Realonda was born on June 19, 1861, in Calamba, Laguna, Philippines. The seventh of eleven children,
@@ -28,7 +28,7 @@
         <section id="education">
             <h2>Education</h2>
             <div class="image-container">
-                <img src="images/education.jpg" alt="Jose Rizal's Education">
+                <img src="images/education.jpg" alt="Jose Rizal's Education" onclick="openModal(this)">
             </div>
             <p>
                 Rizal studied at the Ateneo Municipal de Manila, where he earned a Bachelor of Arts degree with high honors. He then enrolled
@@ -41,7 +41,7 @@
         <section id="contributions">
             <h2>Contributions and Legacy</h2>
             <div class="image-container">
-                <img src="images/contributions.jpg" alt="Jose Rizal's Contributions">
+                <img src="images/contributions.jpg" alt="Jose Rizal's Contributions" onclick="openModal(this)">
             </div>
             <p>
                 As a writer and reformist, Rizal used his works to expose the abuses and injustices of Spanish colonial rule. His novels
@@ -57,7 +57,7 @@
         <section id="personal-life">
             <h2>Personal Life</h2>
             <div class="image-container">
-                <img src="images/personal-life.jpg" alt="Jose Rizal's Personal Life">
+                <img src="images/personal-life.jpg" alt="Jose Rizal's Personal Life" onclick="openModal(this)">
             </div>
             <p>
                 Rizal was a man of many talents, excelling in fields such as literature, medicine, and the arts. He was fluent in multiple
@@ -69,7 +69,7 @@
         <section id="commemoration">
             <h2>Commemoration</h2>
             <div class="image-container">
-                <img src="images/commemoration.jpg" alt="Commemoration of Jose Rizal">
+                <img src="images/commemoration.jpg" alt="Commemoration of Jose Rizal" onclick="openModal(this)">
             </div>
             <p>
                 Today, Jose Rizal is remembered as a national hero of the Philippines. Monuments, schools, and institutions are named in his honor,
@@ -79,18 +79,56 @@
         </section>
     </main>
 
+    <!-- Modal HTML -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
+
     <footer>
         <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
     </footer>
 
     <script>
-        // First load the navbar
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.close-modal');
+
+        function openModal(img) {
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            modalCaption.innerHTML = img.alt;
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeBtn.onclick = closeModal;
+        modal.onclick = function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+
+        // Navbar loading script
         fetch('components/navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.querySelector('header').insertAdjacentHTML('afterend', data);
                 
-                // After navbar is loaded, set active page
                 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
                 const navLinks = document.querySelectorAll('.nav-link');
                 
@@ -100,52 +138,6 @@
                     }
                 });
             });
-
-        document.querySelectorAll('.image-container img').forEach(img => {
-            let isDragging = false;
-            let currentX;
-            let currentY;
-            let initialX;
-            let initialY;
-            let xOffset = 50;
-            let yOffset = 50;
-
-            img.addEventListener('mousedown', startDragging);
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', stopDragging);
-
-            function startDragging(e) {
-                initialX = e.clientX - xOffset;
-                initialY = e.clientY - yOffset;
-
-                if (e.target === img) {
-                    isDragging = true;
-                    img.classList.add('dragging');
-                }
-            }
-
-            function drag(e) {
-                if (isDragging) {
-                    e.preventDefault();
-                    currentX = e.clientX - initialX;
-                    currentY = e.clientY - initialY;
-
-                    // Limit the range of movement (0-100%)
-                    xOffset = Math.min(Math.max(currentX, 0), 100);
-                    yOffset = Math.min(Math.max(currentY, 0), 100);
-
-                    img.style.setProperty('--img-x', `${xOffset}%`);
-                    img.style.setProperty('--img-y', `${yOffset}%`);
-                }
-            }
-
-            function stopDragging() {
-                initialX = currentX;
-                initialY = currentY;
-                isDragging = false;
-                img.classList.remove('dragging');
-            }
-        });
     </script> 
 </body>
 </html>
