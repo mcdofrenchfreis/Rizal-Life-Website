@@ -30,7 +30,7 @@ header {
   text-align: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 60px; /* Add space below header */
+  margin-bottom: 0;
 }
 
 header h1 {
