@@ -381,4 +381,30 @@ a:hover {
     .modal-content {
         width: 100%;
     }
+}
+
+.member-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.member {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.member img {
+    width: 150px; /* Adjust size as needed */
+    height: 150px; /* Adjust size as needed */
+    border-radius: 50%; /* Circular images */
+}
+
+.member:hover {
+    transform: translateY(-5px);
 } 
