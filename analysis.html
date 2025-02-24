@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>Noli Me Tangere & El Filibusterismo - Analysis and Relevance</h1>
+        <h1>Analysis and Relevance</h1>
     </header>
 
     <main>
@@ -54,22 +54,6 @@
         <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Navbar loading script (simplified)
-        fetch('components/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('header').insertAdjacentHTML('afterend', data);
-                
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentPage) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-    </script> 
+    <script src="js/navbar.js"></script>
 </body>
 </html>

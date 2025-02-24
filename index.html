@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jose Rizal & Noli Me Tangere</title>
+    <title>Rizal Life Final Output</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Jose Rizal & El Filibusterismo</h1>
+        <h1>Rizal Life Final Output</h1>
     </header>
 
     <main>
@@ -31,8 +31,11 @@
             <h2>Explore More</h2>
             <ul>
                 <li><a href="works.html">Works</a> - Discover Rizal's other literary masterpieces and contributions.</li>
-                <li><a href="analysis.html">Analysis</a> - In-depth exploration of themes, characters, and the historical context of Rizal's works.</li>
+                <li><a href="analysis.html">Analysis</a> - In-depth exploration of themes, characters, and the historical context of El Filibusterismo.</li>
+                <li><a href="gallery.html">Gallery</a> - Discover Various editions and manuscripts of El Filibusterismo.</li>
                 <li><a href="about.html">About Rizal</a> - Learn more about Rizal's life, education, and his impact on Philippine history.</li>
+                <li><a href="about-group2.html">About Group 2</a> - Learn more about the Group of Students who collaborated to bring this website to life.</li>
+                <li><a href="resources.html">Resources</a> - The sources of literature we've used to support our research, including books, journals, articles, and online references.</li>
             </ul>
         </section>
     </main>
@@ -41,22 +44,6 @@
         <p>&copy; 2025 RIZLIFE - Group 2. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Navbar loading script (simplified)
-        fetch('components/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('header').insertAdjacentHTML('afterend', data);
-                
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-                const navLinks = document.querySelectorAll('.nav-link');
-                
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === currentPage) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-    </script> 
+    <script src="js/navbar.js"></script>
 </body>
 </html>
